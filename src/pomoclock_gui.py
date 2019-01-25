@@ -34,6 +34,8 @@ class PomoClockGui():
         self.root.geometry("{0}x{1}".format(
             int(self.win_wid * 1.5), int(self.win_hei/2.5)))
 
+        self.root.iconbitmap(os.path.join(
+            self.ptl.get_data_folder_path(), 'pomo_icon.ico'))
         self.root.mainloop()
 
     def add_buttons(self, bot_fr, lbl):
