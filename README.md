@@ -5,3 +5,16 @@ It's a clock which helps you concetrate for a fixed period of time. The idea beh
 
 ## Setup/Usage
 In order to run it you have to open the cmd into the 'src' folder of the PomoClock project and type `python pomoclock.py`
+
+
+
+
+
+## Preview
+### PomoClock GUI
+#### "Main" State
+![Main](/data/preview/main_gui.PNG "Main")
+#### "While Is Running" State
+![While Is Running](/data/preview/while_run.PNG "While Is Running")
+#### "Choosing A Default Sound" State
+![Choosing A Default Sound](/data/preview/choose_default_sounds.png "Choosing A Default Sound")
