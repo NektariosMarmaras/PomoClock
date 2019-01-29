@@ -7,7 +7,6 @@ import pomoclock_logic
 
 class PomoClockGui():
     def __init__(self):
-        print('GUI yay')
         self.ptl = pomoclock_logic.PomoClockLogic()
         self.sound_list = self.ptl.get_the_sounds_in_data_folder(
             self.ptl.get_data_folder_path())
