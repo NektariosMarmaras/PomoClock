@@ -13,9 +13,11 @@ In order to run it you have to open the cmd into the 'src' folder of the PomoClo
 
 ## Preview
 ### PomoClock GUI
-#### "Main" State
+#### Default State
 ![Main](/data/preview/main_gui.PNG "Main")
-#### "While Is Running" State
+#### While Is Running
 ![While Is Running](/data/preview/while_run.PNG "While Is Running")
-#### "Choosing A Default Sound" State
+#### Choosing A Default Sound
 ![Choosing A Default Sound](/data/preview/choose_default_sounds.png "Choosing A Default Sound")
+#### Setting The Duration Of The Pomodoro Session
+![Setting The Duration Of The Pomodoro Session](/data/preview/setting_duration.PNG "Setting The Duration Of The Pomodoro Session")
