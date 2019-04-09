@@ -1,25 +1,32 @@
 import os
-from tkinter import messagebox, filedialog
+import sys
+import tkinter as tk
+from tkinter import filedialog, messagebox, ttk
 
 import playsound
 
 seconds = int(0)
 minutes = int(0)
+goal_minutes = int(25)
 dir_path = ''
 
 
 class PomoClockLogic():
-    def __init__(self, do_search=False):
+    def __init__(self, do_search=False, check_for_goal=False):
         global dir_path
+        global goal_minutes
         self.selected_sound = 'chime.mp3'
         if do_search:
             dir_path = self.find_data_folder()
+        if check_for_goal:
+            self.entry_dialog_pop_up()
         self._job = None
 
     def start_timer(self, win_root, win_lbl):
         global seconds
         global minutes
-        if minutes < 25:
+        global goal_minutes
+        if minutes < goal_minutes:
             if seconds > 59:
                 seconds = 0
                 minutes += 1
@@ -39,7 +46,7 @@ class PomoClockLogic():
             self.play_sound(os.path.join(
                 self.get_data_folder_path(), self.selected_sound))
             self.show_pop_up(
-                "Congratulations", "You have gone through 25 minutes of studying without taking a break!!!")
+                "Congratulations", f"You have gone through {goal_minutes} minute(s) of studying without taking a break!!!")
 
     def reset_timer(self, app_root, app_lbl):
         global seconds
@@ -52,10 +59,51 @@ class PomoClockLogic():
         app_lbl.config(text="00:00")
 
     def play_sound(self, sel_song_path):
-        playsound.playsound(sel_song_path)
+        try:
+            playsound.playsound(sel_song_path)
+        except NameError:
+            self.show_pop_up(
+                'NameError', "'playsound' module is either not installed in your system either not imported into the project.")
+            sys.exit("'playsound' module is not installed in your system.")
 
-    def show_pop_up(self, title='No Title', msg='No Message'):
-        messagebox.showinfo(title, msg)
+    def show_pop_up(self, title='No Title', msg='No Message', isError=False):
+        if isError:
+            messagebox.showerror(title, msg)
+        else:
+            messagebox.showinfo(title, msg)
+    
+    def entry_dialog_pop_up(self):
+        pop_up = tk.Tk()
+        pop_up.title("Goal Minutes")
+        fr = tk.Frame(pop_up)
+        fr.pack()
+
+        top_fr = tk.Frame(pop_up)
+        top_fr.pack(side=tk.TOP)
+
+        bottom_fr = tk.Frame(pop_up)
+        bottom_fr.pack(side=tk.BOTTOM)
+
+        lbl_msg = ttk.Label(top_fr, text=f"How long do you want\nyour pomodoro session to be?(Default={goal_minutes})", font=("Times New Roman", 15))
+        lbl_msg.pack(side=tk.TOP, padx=10, pady=5)
+
+        user_entry = tk.Entry(top_fr, bd=5)
+        user_entry.pack(side=tk.BOTTOM)
+
+        b_submit = ttk.Button(bottom_fr, text="Submit", command=lambda: self.set_goal_minutes(user_entry.get(), pop_up)).pack()
+        pop_up.mainloop()
+    
+    def set_goal_minutes(self, entry_txt, entry_pop_up):
+        global goal_minutes
+        try:
+            goal_minutes = int(entry_txt)
+            if goal_minutes <= 0:
+                raise ValueError
+            entry_pop_up.destroy()
+        except ValueError:
+            self.show_pop_up("Error", "Something went wrong with your given input... Try Again!", True)
+            entry_pop_up.destroy()
+            self.entry_dialog_pop_up()
 
     def find_data_folder(self):
         self.script_path = os.path.realpath(__file__)
