@@ -20,6 +20,8 @@ class PomoClockLogic():
             dir_path = self.find_data_folder()
         if check_for_goal:
             self.entry_dialog_pop_up()
+        if goal_minutes = 0:
+            goal_minutes = 25
         self._job = None
 
     def start_timer(self, win_root, win_lbl):
@@ -97,7 +99,7 @@ class PomoClockLogic():
         global goal_minutes
         try:
             goal_minutes = int(entry_txt)
-            if goal_minutes <= 0:
+            if goal_minutes < 0:
                 raise ValueError
             entry_pop_up.destroy()
         except ValueError:
