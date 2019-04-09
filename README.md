@@ -18,6 +18,9 @@ In order to run it you have to open the cmd into the 'src' folder of the PomoClo
 #### While Is Running
 ![While Is Running](/data/preview/while_run.PNG "While Is Running")
 #### Choosing A Default Sound
+##### Choosing A Stock Sound For Default Sound
 ![Choosing A Default Sound](/data/preview/choose_default_sounds.png "Choosing A Default Sound")
+##### Choosing Your Own Song/Sound For Default Sound
+![Choosing Your Own Default Sound](/data/preview/choosing_your_own_sound.PNG "Choosing Your Own Default Sound")
 #### Setting The Duration Of The Pomodoro Session
 ![Setting The Duration Of The Pomodoro Session](/data/preview/setting_duration.PNG "Setting The Duration Of The Pomodoro Session")
