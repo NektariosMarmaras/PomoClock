@@ -20,7 +20,7 @@ class PomoClockLogic():
             dir_path = self.find_data_folder()
         if check_for_goal:
             self.entry_dialog_pop_up()
-        if goal_minutes = 0:
+        if goal_minutes == 0:
             goal_minutes = 25
         self._job = None
 
